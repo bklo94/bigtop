@@ -485,7 +485,6 @@ These projects (enumerated below) allow HDFS to be mounted (on most flavors of U
 %setup -n splice-%{hadoop_name}-%{hadoop_version}-src
 
 #BIGTOP_PATCH_COMMANDS
-%build
 # This assumes that you installed Java JDK 6 and set JAVA_HOME
 # This assumes that you installed Forrest and set FORREST_HOME
 
