@@ -150,7 +150,7 @@ Summary: Hadoop is a software platform for processing vast amounts of data
 License: ASL 2.0
 URL: http://hadoop.apache.org/core/
 Group: Development/Libraries
-Source0: %{name}-%{hadoop_base_version}.tar.gz
+Source0: splice-%{hadoop_name}-%{hadoop_version}.tar.gz
 Source1: do-component-build
 Source2: install_%{name}.sh
 Source3: hadoop.default
@@ -482,7 +482,7 @@ These projects (enumerated below) allow HDFS to be mounted (on most flavors of U
 
 
 %prep
-%setup -n %{name}-%{hadoop_base_version}-src
+%setup -n splice-%{hadoop_name}-%{hadoop_version}-src
 
 #BIGTOP_PATCH_COMMANDS
 %build
@@ -521,7 +521,7 @@ env HADOOP_VERSION=%{hadoop_base_version} bash %{SOURCE2} \
   --httpfs-etc-dir=$RPM_BUILD_ROOT%{etc_httpfs} \
   --kms-etc-dir=$RPM_BUILD_ROOT%{etc_kms} \
   --prefix=$RPM_BUILD_ROOT \
-  --doc-dir=$RPM_BUILD_ROOT%{doc_hadoop} \
+  --doc-dir=$RPM_BUILD_ROOT%{doc_hadoop} \  
   --example-dir=$RPM_BUILD_ROOT%{doc_hadoop}/examples \
   --native-build-string=%{hadoop_arch} \
   --installed-lib-dir=%{lib_hadoop} \
@@ -579,7 +579,7 @@ done
 
 %pre
 getent group hadoop >/dev/null || groupadd -r hadoop
-
+ 
 %pre hdfs
 getent group hdfs >/dev/null   || groupadd -r hdfs
 getent passwd hdfs >/dev/null || /usr/sbin/useradd --comment "Hadoop HDFS" --shell /bin/bash -M -r -g hdfs -G hadoop --home %{state_hdfs} hdfs

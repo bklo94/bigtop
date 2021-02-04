@@ -148,12 +148,12 @@ bigtop {
     'hadoop' {
       name    = 'hadoop'
       relNotes = 'Apache Hadoop'
-      version { base = '2.10.1'; pkg = base; release = 1 }
-      tarball { destination = "${name}-${version.base}.tar.gz"
-                source      = "${name}-${version.base}-src.tar.gz" }
-      url     { download_path = "/$name/common/$name-${version.base}"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      version { base = '3.0.0'; pkg = base; release = 1 }
+      tarball { destination = "splice-hadoop-3.0.0.tar.gz"
+                source      = "splice-hadoop-3.0.0-src" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
     'ignite-hadoop' {
       name    = 'ignite-hadoop'
@@ -169,7 +169,7 @@ bigtop {
     'hbase' {
       name    = 'hbase'
       relNotes = 'Apache HBase'
-      version { base = '1.5.0'; pkg = base; release = 1 }
+      version { base = '2.1.4'; pkg = base; release = 1 }
       tarball { destination = "${name}-${version.base}.tar.gz"
                 source      = "${name}-${version.base}-src.tar.gz" }
       url     { download_path = "/$name/${version.base}/"
@@ -180,7 +180,7 @@ bigtop {
     'hive' {
       name    = 'hive'
       relNotes = 'Apache Hive'
-      version { base = '2.3.6'; pkg = base; release = 1 }
+      version { base = '2.1.1'; pkg = base; release = 1 }
       tarball { destination = "apache-${name}-${version.base}-src.tar.gz"
                 source      = destination }
       url     { download_path = "/$name/$name-${version.base}/"
@@ -190,7 +190,7 @@ bigtop {
     'tez' {
       name    = 'tez'
       relNotes = 'Apache TEZ'
-      version { base = '0.9.2'; pkg = base; release = 1 }
+      version { base = '0.10.0'; pkg = base; release = 1 }
       tarball { destination = "apache-${name}-${version.base}-src.tar.gz"
                 source      = destination }
       url     { download_path = "/$name/${version.base}/"
@@ -200,7 +200,7 @@ bigtop {
     'sqoop' {
       name    = 'sqoop'
       relNotes = 'Apache Sqoop v1'
-      version { base = '1.4.6'; pkg = base; release = 1 }
+      version { base = '1.4.7'; pkg = base; release = 1 }
       tarball { destination = "${name}-${version.base}.tar.gz"
                 source      = destination }
       url     { download_path = "/$name/${version.base}/"
@@ -220,7 +220,7 @@ bigtop {
     'oozie' {
       name    = 'oozie'
       relNotes = 'Apache Oozie'
-      version { base = '4.3.0'; pkg = base; release = 1 }
+      version { base = '5.1.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = destination }
       url     { download_path = "/$name/${version.base}/"
@@ -260,7 +260,7 @@ bigtop {
     'solr' {
       name    = 'solr'
       relNotes = 'Apache Solr'
-      version { base = '6.6.6'; pkg = base; release = 1 }
+      version { base = '7.4.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}-src.tgz"
                 source      = destination }
       url     { download_path = "lucene/$name/${version.base}"
@@ -276,7 +276,7 @@ bigtop {
        * when upgrading spark version.
        * See comments in [bigtop-packages/src/common/spark/install_spark.sh] for details.
        */
-      version { base = '2.4.5'; pkg = base; release = 1 }
+      version { base = '2.4.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "$name-${version.base}.tgz" }
       url     { download_path = "/$name/$name-${version.base}"
@@ -361,7 +361,7 @@ bigtop {
     'kafka' {
       name    = 'kafka'
       relNotes = 'Apache Kafka'
-      version { base = '2.4.0'; pkg = base; release = 1 }
+      version { base = '2.2.1'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "$name-${version.base}-src.tgz" }
       url     { download_path = "/$name/${version.base}/"
