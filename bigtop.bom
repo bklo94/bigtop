@@ -150,7 +150,7 @@ bigtop {
       relNotes = 'Apache Hadoop'
       version { base = '3.0.0'; pkg = base; release = 1 }
       tarball { destination = "splice-hadoop-3.0.0.tar.gz"
-                source      = "splice-hadoop-3.0.0-src" }
+                source      = "splice-hadoop-3.0.0-src.tar.gz" }
       url     { download_path = "temp"
                 site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
                 archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
