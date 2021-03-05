@@ -85,7 +85,7 @@ URL: http://hbase.apache.org/
 Group: Development/Libraries
 Buildroot: %{_topdir}/INSTALL/%{name}-%{version}
 License: ASL 2.0
-Source0: %{name}-%{hbase_base_version}.tar.gz
+Source0: splice-%{name}-%{hbase_base_version}.tar.gz
 Source1: do-component-build
 Source2: install_hbase.sh
 Source3: hbase.svc
@@ -93,9 +93,6 @@ Source4: init.d.tmpl
 Source5: hbase.default
 Source6: hbase.nofiles.conf
 Source7: regionserver-init.d.tpl
-#BIGTOP_PATCH_FILES
-Requires: coreutils, /usr/sbin/useradd, /sbin/chkconfig, /sbin/service
-Requires: hadoop-client, zookeeper >= 3.3.1, bigtop-utils >= 0.7
 
 %if  0%{?mgaversion}
 Requires: bsh-utils
@@ -262,11 +259,9 @@ Requires: /lib/lsb/init-functions
 The Apache HBase REST gateway
 
 %prep
-%setup -n %{name}-%{hbase_base_version}
+%setup -n splice-%{name}-%{hbase_base_version}
 
-#BIGTOP_PATCH_COMMANDS
 
-%build
 env HBASE_VERSION=%{version} bash %{SOURCE1}
 
 %install

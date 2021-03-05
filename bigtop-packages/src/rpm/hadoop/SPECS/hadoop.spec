@@ -482,7 +482,7 @@ These projects (enumerated below) allow HDFS to be mounted (on most flavors of U
 
 
 %prep
-%setup -n splice-%{hadoop_name}-%{hadoop_version}-src
+%setup -n splice-%{hadoop_name}-%{hadoop_version}
 
 #BIGTOP_PATCH_COMMANDS
 # This assumes that you installed Java JDK 6 and set JAVA_HOME
@@ -493,8 +493,8 @@ env \
   HADOOP_ARCH=%{hadoop_arch} \
   DO_MAVEN_DEPLOY=%{?do_maven_deploy} \
   MAVEN_DEPLOY_SOURCE=%{?maven_deploy_source} \
-  MAVEN_REPO_ID=%{?maven_repo_id} \
-  MAVEN_REPO_URI=%{?maven_repo_uri} \
+  MAVEN_REPO_ID=splicemachine \
+  MAVEN_REPO_URI=http://nexus.splicemachine.com/nexus/ \
 bash %{SOURCE1}
 
 %clean
