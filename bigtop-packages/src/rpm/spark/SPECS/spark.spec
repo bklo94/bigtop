@@ -47,7 +47,7 @@ Group: Development/Libraries
 BuildArch: noarch
 Buildroot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 License: ASL 2.0
-Source0: %{spark_name}-%{spark_base_version}.tar.gz
+Source0: splice-%{spark_name}-%{spark_base_version}.tar.gz
 Source1: do-component-build 
 Source2: install_%{spark_name}.sh
 Source3: spark-master.svc
@@ -159,9 +159,6 @@ SparkR is an R package that provides a light-weight frontend to use Apache Spark
 %prep
 %setup -n %{spark_name}-%{spark_base_version}
 
-#BIGTOP_PATCH_COMMANDS
-
-%build
 bash $RPM_SOURCE_DIR/do-component-build
 
 %install

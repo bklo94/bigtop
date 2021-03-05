@@ -277,13 +277,12 @@ bigtop {
        * See comments in [bigtop-packages/src/common/spark/install_spark.sh] for details.
        */
       version { base = '2.4.0'; pkg = base; release = 1 }
-      tarball { destination = "$name-${version.base}.tar.gz"
-                source      = "$name-${version.base}.tgz" }
-      url     { download_path = "/$name/$name-${version.base}"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      tarball { destination = "splice-$name-${version.base}.tar.gz"
+                source      = "splice-$name-${version.base}-src.tgz" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
-
     'flink' {
       name    = 'flink'
       relNotes = 'Apache Flink'
