@@ -157,7 +157,7 @@ Requires: spark-core = %{version}-%{release}, R
 SparkR is an R package that provides a light-weight frontend to use Apache Spark from R.
 
 %prep
-%setup -n %{spark_name}-%{spark_base_version}
+%setup -n splice-%{spark_name}-%{spark_base_version}
 
 bash $RPM_SOURCE_DIR/do-component-build
 
@@ -255,14 +255,7 @@ done
 
 %files -n spark-yarn-shuffle
 %defattr(-,root,root,755)
-%{lib_spark}/yarn/spark-*-yarn-shuffle.jar
 %{lib_spark}/yarn/lib/spark-yarn-shuffle.jar
-
-%files -n spark-sparkr
-%defattr(-,root,root,755)
-%{lib_spark}/R
-%{lib_spark}/bin/sparkR
-%{bin}/sparkR
 
 %define service_macro() \
 %files -n %1 \

@@ -277,8 +277,8 @@ bigtop {
        * See comments in [bigtop-packages/src/common/spark/install_spark.sh] for details.
        */
       version { base = '2.4.0'; pkg = base; release = 1 }
-      tarball { destination = "splice-$name-${version.base}.tar.gz"
-                source      = "splice-$name-${version.base}-src.tgz" }
+      tarball { destination = "splice-spark-2.4.0.tar.gz"
+                source      = "splice-spark-2.4.0-src.tar.gz" }
       url     { download_path = "temp"
                 site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
                 archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }

@@ -134,8 +134,8 @@ MAVEN_OPTS="$MAVEN_OPTS -DskipTests -DskipTest -DskipITs"
 mvn $ANT_OPTS $BUNDLE_SNAPPY -Pdist -Pnative -Psrc -Dtar ${MAVEN_OPTS} -Dtomcat.version=${BIGTOP_TOMCAT_VERSION} -Dtomcat.download.url="$BIGTOP_TOMCAT_DOWNLOAD_URL" install package ${EXTRA_GOALS} "$@"
 mvn site site:stage ${MAVEN_OPTS} $@
 
-(cd build ; tar --strip-components=1 -xzvf  ../hadoop-dist/target/hadoop-${HADOOP_VERSION}.tar.gz)
-(cd build/src ; tar --strip-components=1 -xzvf  ../../hadoop-dist/target/hadoop-${HADOOP_VERSION}-src.tar.gz)
+(cd build ; tar --strip-components=1 -xzvf  ../hadoop-dist/target/hadoop-${HADOOP_VERSION}-cdh6.3.2.tar.gz)
+(cd build/src ; tar --strip-components=1 -xzvf  ../../hadoop-dist/target/hadoop-${HADOOP_VERSION}-cdh6.3.2-src.tar.gz)
 
 # Create a manifest for hadoop client package
 (cd hadoop-client/target/hadoop-client-*/share/hadoop/client/lib ; ls) > build/hadoop-client.list

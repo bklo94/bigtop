@@ -30,7 +30,7 @@ if [ $HOSTTYPE = "powerpc64le" ] ; then
   sed  -i "s|<version>1.5.0-alpha.6</version>|<version>1.5.0-alpha.11</version>|" pom.xml
 fi
 
-rm -f hbase-server/src/test/java/org/apache/hadoop/hbase/regionserver/TestBulkLoad.java
+rm -f hbase-server/src/test/java/org/apache/hadoop/hbase/regionserver/TestBulkLoad.javaa
 
 if [ $HOSTTYPE = "aarch64" ] ; then
   sed -i '/asciidoctorj-pdf/!{p;d;};n;n;a'\
@@ -52,4 +52,5 @@ mvn ${MVN_ARGS} ${MAVEN_ADDITIONAL} package assembly:single "$@"
 
 rm -rf build
 mkdir build
-tar -C build --strip-components=1 -xzf hbase-assembly/target/hbase*.tar.gz
+tar -C build --strip-components=1 -xzf hbase-assembly/target/hbase-2.1.0-cdh6.3.2-bin.tar.gz
+tar -C build --strip-components=1 -xzf hbase-assembly/target/hbase*client-bin.tar.gz
