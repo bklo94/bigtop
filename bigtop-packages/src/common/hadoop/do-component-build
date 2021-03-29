@@ -138,7 +138,7 @@ mvn site site:stage ${MAVEN_OPTS} $@
 (cd build/src ; tar --strip-components=1 -xzvf  ../../hadoop-dist/target/hadoop-${HADOOP_VERSION}-cdh6.3.2-src.tar.gz)
 
 # Create a manifest for hadoop client package
-(cd hadoop-client/target/hadoop-client-*/share/hadoop/client/lib ; ls) > build/hadoop-client.list
+(cd hadoop-client-modules/hadoop-client/target/hadoop-client-*-cdh6.3.2/share/hadoop/client/lib ; ls) > build/hadoop-client.list
 
 # Copy fuse output to the build directory
 cp hadoop-hdfs-project/hadoop-hdfs-native-client/target/main/native/fuse-dfs/fuse_dfs build/bin

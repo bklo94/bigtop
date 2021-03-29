@@ -191,34 +191,29 @@ done
 
 #libexec
 install -d -m 0755 ${SYSTEM_LIBEXEC_DIR}
-cp ${BUILD_DIR}/libexec/* ${SYSTEM_LIBEXEC_DIR}/
-cp ${DISTRO_DIR}/hadoop-layout.sh ${SYSTEM_LIBEXEC_DIR}/
-install -m 0755 ${DISTRO_DIR}/init-hdfs.sh ${SYSTEM_LIBEXEC_DIR}/
-install -m 0755 ${DISTRO_DIR}/init-hcfs.json ${SYSTEM_LIBEXEC_DIR}/
-install -m 0755 ${DISTRO_DIR}/init-hcfs.groovy ${SYSTEM_LIBEXEC_DIR}/
 rm -rf ${SYSTEM_LIBEXEC_DIR}/*.cmd
 
 # hadoop jar
 install -d -m 0755 ${HADOOP_DIR}
 cp ${BUILD_DIR}/share/hadoop/common/*.jar ${HADOOP_DIR}/
 cp ${BUILD_DIR}/share/hadoop/common/lib/hadoop-auth*.jar ${HADOOP_DIR}/
-cp ${BUILD_DIR}/share/hadoop/mapreduce/lib/hadoop-annotations*.jar ${HADOOP_DIR}/
+cp ${BUILD_DIR}/../hadoop-common-project/hadoop-annotations/target/hadoop-annotations*.jar ${HADOOP_DIR}/
 install -d -m 0755 ${MAPREDUCE_DIR}
-cp ${BUILD_DIR}/share/hadoop/mapreduce/hadoop-mapreduce*.jar ${MAPREDUCE_DIR}
-cp ${BUILD_DIR}/share/hadoop/tools/lib/*.jar ${MAPREDUCE_DIR}
+cp /src/build/hadoop/rpm/BUILD/splice-hadoop-3.0.0/hadoop-dist/target/hadoop-3.0.0-cdh6.3.2/share/hadoop/mapreduce/sources/hadoop-mapreduce*.jar ${MAPREDUCE_DIR}
+cp /src/build/hadoop/rpm/BUILD/splice-hadoop-3.0.0/build/share/hadoop/mapreduce/*.jar ${MAPREDUCE_DIR}
 install -d -m 0755 ${HDFS_DIR}
 cp ${BUILD_DIR}/share/hadoop/hdfs/*.jar ${HDFS_DIR}/
 install -d -m 0755 ${YARN_DIR}
 cp ${BUILD_DIR}/share/hadoop/yarn/hadoop-yarn*.jar ${YARN_DIR}/
 install -d -m 0755 ${YARN_DIR}/timelineservice
 cp ${BUILD_DIR}/share/hadoop/yarn/timelineservice/hadoop-yarn*.jar ${YARN_DIR}/timelineservice
-chmod 644 ${HADOOP_DIR}/*.jar ${MAPREDUCE_DIR}/*.jar ${HDFS_DIR}/*.jar ${YARN_DIR}/*.jar
+chmod 644 ${HADOOP_DIR}/*.jar /src/build/hadoop/rpm/BUILD/splice-hadoop-3.0.0/build/share/hadoop/mapreduce/*.jar ${HDFS_DIR}/*.jar ${YARN_DIR}/*.jar
 
 # lib jars
 install -d -m 0755 ${HADOOP_DIR}/lib
 cp ${BUILD_DIR}/share/hadoop/common/lib/*.jar ${HADOOP_DIR}/lib
 install -d -m 0755 ${MAPREDUCE_DIR}/lib
-cp ${BUILD_DIR}/share/hadoop/mapreduce/lib/*.jar ${MAPREDUCE_DIR}/lib
+cp /src/build/hadoop/rpm/BUILD/splice-hadoop-3.0.0/build/share/hadoop/mapreduce/**.jar ${MAPREDUCE_DIR}/lib
 install -d -m 0755 ${HDFS_DIR}/lib 
 cp ${BUILD_DIR}/share/hadoop/hdfs/lib/*.jar ${HDFS_DIR}/lib
 install -d -m 0755 ${YARN_DIR}/lib
@@ -232,7 +227,7 @@ cp -ra ${BUILD_DIR}/share/hadoop/hdfs/webapps ${HDFS_DIR}/
 
 # bin
 install -d -m 0755 ${HADOOP_DIR}/bin
-cp -a ${BUILD_DIR}/bin/{hadoop,rcc,fuse_dfs} ${HADOOP_DIR}/bin
+cp -a ${BUILD_DIR}/bin/{hadoop,fuse_dfs} ${HADOOP_DIR}/bin
 install -d -m 0755 ${HDFS_DIR}/bin
 cp -a ${BUILD_DIR}/bin/hdfs ${HDFS_DIR}/bin
 install -d -m 0755 ${YARN_DIR}/bin
@@ -244,7 +239,7 @@ cp -a ${BUILD_DIR}/bin/mapred ${YARN_DIR}/bin
 
 # sbin
 install -d -m 0755 ${HADOOP_DIR}/sbin
-cp -a ${BUILD_DIR}/sbin/{hadoop-daemon,hadoop-daemons,slaves}.sh ${HADOOP_DIR}/sbin
+cp -a ${BUILD_DIR}/sbin/{hadoop-daemon,hadoop-daemons}.sh ${HADOOP_DIR}/sbin
 install -d -m 0755 ${HDFS_DIR}/sbin
 cp -a ${BUILD_DIR}/sbin/{distribute-exclude,refresh-namenodes}.sh ${HDFS_DIR}/sbin
 install -d -m 0755 ${YARN_DIR}/sbin
@@ -318,89 +313,15 @@ cp ${DISTRO_DIR}/conf.empty/mapred-site.xml $HADOOP_ETC_DIR/conf.empty
 # so that it can still be used as example, but doesn't affect anything
 # by default
 sed -i -e '/^[^#]/s,^,#,' ${BUILD_DIR}/etc/hadoop/hadoop-env.sh
-cp ${BUILD_DIR}/etc/hadoop/* $HADOOP_ETC_DIR/conf.empty
 rm -rf $HADOOP_ETC_DIR/conf.empty/*.cmd
-
-# docs
-install -d -m 0755 ${DOC_DIR}
-cp -r ${BUILD_DIR}/share/doc/* ${DOC_DIR}/
-
-# man pages
-mkdir -p $MAN_DIR/man1
-for manpage in hadoop hdfs yarn mapred; do
-	gzip -c < $DISTRO_DIR/$manpage.1 > $MAN_DIR/man1/$manpage.1.gz
-	chmod 644 $MAN_DIR/man1/$manpage.1.gz
-done
-
-# HTTPFS
-install -d -m 0755 ${HTTPFS_DIR}/sbin
-cp ${BUILD_DIR}/sbin/httpfs.sh ${HTTPFS_DIR}/sbin/
-cp -r ${BUILD_DIR}/share/hadoop/httpfs/tomcat/webapps ${HTTPFS_DIR}/webapps
-install -d -m 0755 ${PREFIX}/var/lib/hadoop-httpfs
-install -d -m 0755 $HTTPFS_ETC_DIR/conf.empty
-
-install -m 0755 ${DISTRO_DIR}/httpfs-tomcat-deployment.sh ${HTTPFS_DIR}/tomcat-deployment.sh
-
-HTTPFS_HTTP_DIRECTORY=$HTTPFS_ETC_DIR/tomcat-conf.dist
-HTTPFS_HTTPS_DIRECTORY=$HTTPFS_ETC_DIR/tomcat-conf.https
-
-install -d -m 0755 ${HTTPFS_HTTP_DIRECTORY}
-cp -r ${BUILD_DIR}/share/hadoop/httpfs/tomcat/conf ${HTTPFS_HTTP_DIRECTORY}
-chmod 644 ${HTTPFS_HTTP_DIRECTORY}/conf/*
-install -d -m 0755 ${HTTPFS_HTTP_DIRECTORY}/WEB-INF
-mv ${HTTPFS_DIR}/webapps/webhdfs/WEB-INF/*.xml ${HTTPFS_HTTP_DIRECTORY}/WEB-INF/
-
-cp -r ${HTTPFS_HTTP_DIRECTORY} ${HTTPFS_HTTPS_DIRECTORY}
-mv ${HTTPFS_HTTPS_DIRECTORY}/conf/ssl-server.xml ${HTTPFS_HTTPS_DIRECTORY}/conf/server.xml
-rm ${HTTPFS_HTTP_DIRECTORY}/conf/ssl-server.xml
-
-mv $HADOOP_ETC_DIR/conf.empty/httpfs* $HTTPFS_ETC_DIR/conf.empty
-sed -i -e '/<\/configuration>/i\
-  <property>\
-    <name>httpfs.hadoop.config.dir</name>\
-    <value>/etc/hadoop/conf</value>\
-  </property>' $HTTPFS_ETC_DIR/conf.empty/httpfs-site.xml
 
 # KMS
 install -d -m 0755 ${KMS_DIR}/sbin
 cp ${BUILD_DIR}/sbin/kms.sh ${KMS_DIR}/sbin/
-cp -r ${BUILD_DIR}/share/hadoop/kms/tomcat/webapps ${KMS_DIR}/webapps
 install -d -m 0755 ${PREFIX}/var/lib/hadoop-kms
 install -d -m 0755 $KMS_ETC_DIR/conf.empty
 
 install -m 0755 ${DISTRO_DIR}/kms-tomcat-deployment.sh ${KMS_DIR}/tomcat-deployment.sh
-
-KMS_HTTP_DIRECTORY=$KMS_ETC_DIR/tomcat-conf.dist
-KMS_HTTPS_DIRECTORY=$KMS_ETC_DIR/tomcat-conf.https
-
-install -d -m 0755 ${KMS_HTTP_DIRECTORY}
-cp -r ${BUILD_DIR}/share/hadoop/kms/tomcat/conf ${KMS_HTTP_DIRECTORY}
-chmod 644 ${KMS_HTTP_DIRECTORY}/conf/*
-install -d -m 0755 ${KMS_HTTP_DIRECTORY}/WEB-INF
-cp ${KMS_DIR}/webapps/kms/WEB-INF/*.xml ${KMS_HTTP_DIRECTORY}/WEB-INF/
-
-cp -r ${KMS_HTTP_DIRECTORY} ${KMS_HTTPS_DIRECTORY}
-mv ${KMS_HTTPS_DIRECTORY}/conf/ssl-server.xml ${KMS_HTTPS_DIRECTORY}/conf/server.xml
-rm ${KMS_HTTP_DIRECTORY}/conf/ssl-server.xml
-
-mv $HADOOP_ETC_DIR/conf.empty/kms* $KMS_ETC_DIR/conf.empty
-cp $HADOOP_ETC_DIR/conf.empty/core-site.xml  $KMS_ETC_DIR/conf.empty
-
-# Make the pseudo-distributed config
-for conf in conf.pseudo ; do
-  install -d -m 0755 $HADOOP_ETC_DIR/$conf
-  # Install the upstream config files
-  cp ${BUILD_DIR}/etc/hadoop/* $HADOOP_ETC_DIR/$conf
-  # Remove the ones that shouldn't be installed
-  rm -rf $HADOOP_ETC_DIR/$conf/httpfs*
-  rm -rf $HADOOP_ETC_DIR/$conf/*.cmd
-  # Overlay the -site files
-  (cd $DISTRO_DIR/$conf && tar -cf - .) | (cd $HADOOP_ETC_DIR/$conf && tar -xf -)
-  chmod -R 0644 $HADOOP_ETC_DIR/$conf/*
-  # When building straight out of svn we have to account for pesky .svn subdirs 
-  rm -rf `find $HADOOP_ETC_DIR/$conf -name .svn -type d` 
-done
-cp ${BUILD_DIR}/etc/hadoop/log4j.properties $HADOOP_ETC_DIR/conf.pseudo
 
 # FIXME: Provide a convenience link for configuration (HADOOP-7939)
 install -d -m 0755 ${HADOOP_DIR}/etc
@@ -411,29 +332,3 @@ ln -s ${HADOOP_ETC_DIR##${PREFIX}}/conf ${YARN_DIR}/etc/hadoop
 # Create log, var and lib
 install -d -m 0755 $PREFIX/var/{log,run,lib}/hadoop-hdfs
 install -d -m 0755 $PREFIX/var/{log,run,lib}/hadoop-yarn
-install -d -m 0755 $PREFIX/var/{log,run,lib}/hadoop-mapreduce
-
-# Remove all source and create version-less symlinks to offer integration point with other projects
-for DIR in ${HADOOP_DIR} ${HDFS_DIR} ${YARN_DIR} ${MAPREDUCE_DIR} ${HTTPFS_DIR} ${KMS_DIR}; do
-  (cd $DIR &&
-   rm -fv *-sources.jar
-   rm -fv lib/hadoop-*.jar
-   for j in hadoop-*.jar; do
-     if [[ $j =~ hadoop-(.*)-${HADOOP_VERSION}.jar ]]; then
-       name=${BASH_REMATCH[1]}
-       ln -s $j hadoop-$name.jar
-     fi
-   done)
-done
-
-# Now create a client installation area full of symlinks
-install -d -m 0755 ${CLIENT_DIR}
-for file in `cat ${BUILD_DIR}/hadoop-client.list` ; do
-  for dir in ${HADOOP_DIR}/{lib,} ${HDFS_DIR}/{lib,} ${YARN_DIR}/{lib,} ${MAPREDUCE_DIR}/{lib,} ; do
-    [ -e $dir/$file ] && \
-    ln -fs ${dir#$PREFIX}/$file ${CLIENT_DIR}/${file} && \
-    ln -fs ${dir#$PREFIX}/$file ${CLIENT_DIR}/${file/-[[:digit:]]*/.jar} && \
-    continue 2
-  done
-  exit 1
-done

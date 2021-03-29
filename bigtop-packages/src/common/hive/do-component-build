@@ -29,8 +29,9 @@ HIVE_MAVEN_OPTS=" -Dhbase.version=$HBASE_VERSION \
 # Include common Maven Deployment logic
 . $(dirname ${0})/maven_deploy.sh
 
+git checkout cdh6.3.2-release
 export MAVEN_OPTS="${MAVEN_OPTS} -Xmx1500m -Xms1500m"
-mvn ${HIVE_MAVEN_OPTS} clean install ${EXTRA_GOALS} -Pdist "$@"
+mvn ${HIVE_MAVEN_OPTS} clean install ${EXTRA_GOALS} "$@"
 
 mkdir -p build/dist
 tar -C build/dist --strip-components=1 -xzf packaging/target/apache-hive-${HIVE_VERSION}-bin.tar.gz

@@ -139,11 +139,9 @@ bigtop {
         source      = "zookeeper-${version.base}.tar.gz"
         destination = source
       }
-      url {
-        download_path = "/zookeeper/zookeeper-${version.base}"
-        site          = "${apache.APACHE_MIRROR}/${download_path}"
-        archive       = "${apache.APACHE_ARCHIVE}/${download_path}"
-      }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
     'hadoop' {
       name    = 'hadoop'
@@ -155,16 +153,18 @@ bigtop {
                 site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
                 archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'ignite-hadoop' {
       name    = 'ignite-hadoop'
       relNotes = 'Apache Ignite in-memory data fabric'
       version { base = '2.7.6'; pkg = base; release = 1 }
       tarball { destination = "${name}-${version.base}.tar.gz"
                 source      = "apache-ignite-${version.base}-src.zip" }
-      url     { download_path = "/ignite/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
 
     'hbase' {
       name    = 'hbase'
@@ -181,31 +181,33 @@ bigtop {
       name    = 'hive'
       relNotes = 'Apache Hive'
       version { base = '2.1.1'; pkg = base; release = 1 }
-      tarball { destination = "apache-${name}-${version.base}-src.tar.gz"
+      tarball { destination = "splice-${name}-${version.base}-src.tar.gz"
                 source      = destination }
-      url     { download_path = "/$name/$name-${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'tez' {
       name    = 'tez'
       relNotes = 'Apache TEZ'
       version { base = '0.10.0'; pkg = base; release = 1 }
       tarball { destination = "apache-${name}-${version.base}-src.tar.gz"
                 source      = destination }
-      url     { download_path = "/$name/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'sqoop' {
       name    = 'sqoop'
       relNotes = 'Apache Sqoop v1'
       version { base = '1.4.7'; pkg = base; release = 1 }
       tarball { destination = "${name}-${version.base}.tar.gz"
                 source      = destination }
-      url     { download_path = "/$name/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
     'sqoop2' {
       name    = 'sqoop2'
@@ -213,60 +215,66 @@ bigtop {
       version { base = '1.99.4'; pkg = base; release = 1 }
       tarball { destination = "${sqoop.name}-${version.base}.tar.gz"
                 source      = destination }
-      url     { download_path = "/${sqoop.name}/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'oozie' {
       name    = 'oozie'
       relNotes = 'Apache Oozie'
       version { base = '5.1.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = destination }
-      url     { download_path = "/$name/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'mahout' {
       name    = 'mahout'
       relNotes = 'Apache Mahout'
       version { base = '0.13.0'; pkg = base; release = 1 }
       tarball { destination = "apache-$name-distribution-${version.base}-src.tar.gz"
                 source      = destination }
-      url     { download_path = "/$name/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'flume' {
       name    = 'flume'
       relNotes = 'Apache Flume'
       version { base = '1.9.0'; pkg = base; release = 1 }
       tarball { destination = "apache-$name-${version.base}-src.tar.gz"
                 source      = destination }
-      url     { download_path = "/$name/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'giraph' {
       name    = 'giraph'
       relNotes = 'Apache Giraph'
       version { base = '1.2.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "$name-dist-${version.base}-src.tar.gz" }
-      url     { download_path = "/$name/$name-${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'solr' {
       name    = 'solr'
       relNotes = 'Apache Solr'
       version { base = '7.4.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}-src.tgz"
                 source      = destination }
-      url     { download_path = "lucene/$name/${version.base}"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'spark' {
       name    = 'spark'
       pkg     = 'spark-core'
@@ -289,9 +297,9 @@ bigtop {
       version { base = '1.6.4'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "$name-${version.base}-src.tgz" }
-      url     { download_path = "/$name/$name-${version.base}"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
 
 
@@ -307,20 +315,22 @@ bigtop {
       version { base = "4.15.0-${phoenix.hbase}"; pkg = '4.15.0'; release = 1 }
       tarball { destination = "$name-${version.base}-src.tar.gz"
                 source      = "apache-$name-${version.base}-src.tar.gz" }
-      url     { download_path = "/$name/apache-$name-${version.base}/src"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'bigtop-groovy' {
       name    = 'bigtop-groovy'
       version { base = '2.5.4'; pkg = '2.5.4'; release = 1}
       relNotes = "Groovy: a dynamic language for the Java platform"
       tarball { destination = "$name-${version.base}.tar.gz";
                 source      = "apache-groovy-binary-${version.base}.zip"}
-      url     { site = "https://dl.bintray.com/groovy/maven/"; archive = site }
-      // Optional, as only null values are specified
-      git     { repo = null; ref = null; dir = null}
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'bigtop-utils' {
       name    = "bigtop-utils"
       relNotes = "Service package for Apache Bigtop runtime"
@@ -333,20 +343,22 @@ bigtop {
       version { base = '1.0.15'; pkg = base; release = 1 }
       tarball { source      = "commons-daemon-${version.base}-native-src.tar.gz"
                 destination = "commons-daemon-${version.base}.tar.gz" }
-      url     { download_path = "/commons/daemon/source"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'bigtop-tomcat' {
       name    = "bigtop-tomcat"
       relNotes = "Apache Tomcat"
       version { base = '8.5.57'; pkg = base; release = 1 }
       tarball { source      = "apache-tomcat-${version.base}-src.tar.gz"
                 destination = "apache-tomcat-${version.base}.tar.gz" }
-      url     { download_path = "/tomcat/tomcat-8/v${version.base}/src"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'alluxio' {
       name    = "alluxio"
       pkg     = "alluxio"
@@ -354,76 +366,88 @@ bigtop {
       version { base = '1.8.2'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "v${version.base}.tar.gz" }
-      url     { site = "https://github.com/Alluxio/alluxio/archive"
-                archive = site }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'kafka' {
       name    = 'kafka'
       relNotes = 'Apache Kafka'
       version { base = '2.2.1'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "$name-${version.base}-src.tgz" }
-      url     { download_path = "/$name/${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'ycsb' {
       name    = 'ycsb'
       relNotes = 'Yahoo! Cloud Serving Benchmark'
       version { base = '0.12.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "${version.base}.tar.gz" }
-      url     { site = "https://github.com/brianfrankcooper/YCSB/archive"
-                archive = site }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'zeppelin' {
       name    = 'zeppelin'
       relNotes = 'Apache Zeppelin'
       version { base = '0.8.2'; pkg = base; release = 1 }
       tarball { source      = "$name-${version.base}.tgz"
                 destination = "$name-${version.base}.tar.gz" }
-      url     { download_path = "/$name/$name-${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'qfs' {
       name    = 'qfs'
       relNotes = 'Quantcast Filesystem'
       version { base = '2.0.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "${version.base}.tar.gz" }
-      url     { site = "https://github.com/quantcast/qfs/archive"
-                archive = site }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'gpdb' {
       name    = 'gpdb'
       relNotes = 'GreenPlum'
       version { base = '5.10.0'; pkg = '5.10.0'; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "${version.base}.tar.gz" }
-      url     { site = "https://github.com/greenplum-db/gpdb/archive/"
-                archive = site }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'ambari' {
       name    = 'ambari'
       relNotes = 'Apache Ambari'
       version { base = '2.6.1'; pkg = '2.6.1.0'; release = 1 }
       tarball { destination = "apache-$name-${version.base}-src.tar.gz"
                 source      = destination }
-      url     { download_path = "/$name/$name-${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'bigtop-ambari-mpack' {
       name    = 'bigtop-ambari-mpack'
       relNotes = 'Bigtop Mpack'
       version { base = '2.6.1'; pkg = '2.6.1.0'; release = 1 }
       tarball { destination = "apache-ambari-${version.base}-src.tar.gz"
                 source      = destination }
-      url     { download_path = "/ambari/ambari-${version.base}/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'livy' {
       name    = 'livy'
       relNotes = 'Apache Livy'
@@ -442,26 +466,31 @@ bigtop {
       version { base = '5.6.14'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "v${version.base}.zip" }
-      url     { site = "https://github.com/elastic/elasticsearch/archive"
-                archive = site }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'logstash' {
       name    = 'logstash'
       relNotes = 'Data processing pipeline'
       version { base = '5.4.1'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "v${version.base}.zip" }
-      url     { site = "https://github.com/elastic/logstash/archive"
-                archive = site }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
+
     'kibana' {
       name    = 'kibana'
       relNotes = 'A browser-based analytics and search dashboard'
       version { base = '5.4.1'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}.tar.gz"
                 source      = "v${version.base}.zip" }
-      url     { site = "https://github.com/elastic/kibana/archive"
-                archive = site }
+      url     { download_path = "temp"
+                site = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}"
+                archive = "https://splice-cloudera-rpms.s3.amazonaws.com/${download_path}" }
     }
   }
 }

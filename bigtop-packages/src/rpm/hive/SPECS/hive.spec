@@ -65,7 +65,7 @@ URL: http://hive.apache.org/
 Group: Development/Libraries
 Buildroot: %{_topdir}/INSTALL/%{name}-%{version}
 BuildArch: noarch
-Source0: apache-%{name}-%{hive_base_version}-src.tar.gz
+Source0: splice-%{name}-%{hive_base_version}-src.tar.gz
 Source1: do-component-build
 Source2: install_hive.sh
 Source3: init.d.tmpl
@@ -228,11 +228,8 @@ Requires: /lib/lsb/init-functions
 Init scripts for WebHcat server.
 
 %prep
-%setup -q -n apache-%{name}-%{hive_base_version}-src
+%setup -q -n splice-%{name}-%{hive_base_version}
 
-#BIGTOP_PATCH_COMMANDS
-
-%build
 env \
   DO_MAVEN_DEPLOY=%{?do_maven_deploy} \
   MAVEN_DEPLOY_SOURCE=%{?maven_deploy_source} \
