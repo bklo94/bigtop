@@ -1,0 +1,28 @@
+Determining if the function wsyncup exists in the /usr/lib64/libcurses.so passed with the following output:
+Change Dir: /src/cmake-3.12.3/Source/Checks/Curses-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_03805/fast"
+gmake -f CMakeFiles/cmTC_03805.dir/build.make CMakeFiles/cmTC_03805.dir/build
+gmake[1]: Entering directory `/src/cmake-3.12.3/Source/Checks/Curses-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_03805.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=wsyncup   -o CMakeFiles/cmTC_03805.dir/CheckFunctionExists.c.o   -c /src/cmake-3.12.3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_03805
+/src/cmake-3.12.3/Bootstrap.cmk/cmake -E cmake_link_script CMakeFiles/cmTC_03805.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=wsyncup    -rdynamic CMakeFiles/cmTC_03805.dir/CheckFunctionExists.c.o  -o cmTC_03805 -lcurses 
+gmake[1]: Leaving directory `/src/cmake-3.12.3/Source/Checks/Curses-build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function cbreak exists in the /usr/lib64/libncurses.so passed with the following output:
+Change Dir: /src/cmake-3.12.3/Source/Checks/Curses-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_c5139/fast"
+gmake -f CMakeFiles/cmTC_c5139.dir/build.make CMakeFiles/cmTC_c5139.dir/build
+gmake[1]: Entering directory `/src/cmake-3.12.3/Source/Checks/Curses-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c5139.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=cbreak   -o CMakeFiles/cmTC_c5139.dir/CheckFunctionExists.c.o   -c /src/cmake-3.12.3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c5139
+/src/cmake-3.12.3/Bootstrap.cmk/cmake -E cmake_link_script CMakeFiles/cmTC_c5139.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=cbreak    -rdynamic CMakeFiles/cmTC_c5139.dir/CheckFunctionExists.c.o  -o cmTC_c5139 -lncurses 
+gmake[1]: Leaving directory `/src/cmake-3.12.3/Source/Checks/Curses-build/CMakeFiles/CMakeTmp'
+
+
